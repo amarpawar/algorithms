@@ -17,7 +17,9 @@ Longest prefix which is also a suffix is the longest substring from the given st
 
 For a given string of length n, a substring can be it's prefix if it starts at 0<sup>th</sup> index and ends at (n-1-i)<sup>th</sup> index and a substring can be it's suffix if it starts at i<sup>th</sup> index and ends at (n-1)<sup>th</sup> index where i is greater than 0.
 
-For the above example, the LPS array will be ```[0, 1, 0, 0, 0, 0, 1, 2, 3, 4]```. The value at LPS[i] represents the length of longest prefix substring which is also a suffix for the substring from our parent string from 0 to i<sup>th</sup> index. 
+For the above example, the LPS array will be ```[0, 1, 0, 0, 0, 0, 1, 2, 3, 4]```. The value at LPS[i] represents the length of longest prefix substring which is also a suffix for the substring from our parent string from 0 to i<sup>th</sup> index. For i=8, we get the length of LPS as 3 which can be visualized as below.
+
+![alt text](https://i.ibb.co/rFs0bqv/pattern2.png)
 
 Following is the pseudo code for generating the LPS array.
 
@@ -41,4 +43,6 @@ getLps(String needle)
     ENDFOR
 END getLPS
 ```
+Let's go through each step of this algorithm.
 
+1. We initialize first element of our LPS array to 0, becuase with j=0
