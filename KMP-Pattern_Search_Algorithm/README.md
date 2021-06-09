@@ -45,4 +45,8 @@ END getLPS
 ```
 Let's go through each step of this algorithm.
 
-1. We initialize first element of our LPS array to 0, becuase with j=0
+1. We initialize first element of our LPS array to 0, becuase for i=0, length of our substring will be 1 and for a string with length 1, LPS is alaways 0.
+2. We will start incrementing our text from index 1. 
+3. If character at i<sup>th</sup> index is equal to the character at j<sup>th</sup> index, then we will set LPS[i] equals to j+1. What this tells us that if we take a substring of our needle from 0 to i<sup>th</sup> index, for that substring we have LPS of length j+1.
+
+
