@@ -48,5 +48,11 @@ Let's go through each step of this algorithm.
 1. We initialize first element of our LPS array to 0, becuase for i=0, length of our substring will be 1 and for a string with length 1, LPS is alaways 0.
 2. We will start incrementing our text from index 1. 
 3. If character at i<sup>th</sup> index is equal to the character at j<sup>th</sup> index, then we will set LPS[i] equals to j+1. What this tells us that if we take a substring of our needle from 0 to i<sup>th</sup> index, for that substring we have LPS of length j+1.
+4. If there is a mismatch between characters at j<sup>th</sup> and i<sup>th</sup> indices, we will move our j pointer back to LPS[j-1]<sup>th</sup> index. Here we are not moving our j pointer back to 0. This is the optimisation over naive approach which gives this algorithm linear time complexity. We keep on moving our j pointer back to LPS[j-1] position until j becomes 0 or needle[i] is equals to needle[j].
 
+Lets take an exmaple and see how moving our pointer back to LPS[i] works.
+
+Needle: a 	b	a 	b	b	a 	b 	a 	b 	a 	a
+
+When our j pointer reaches to 4th index, our i index will reach to 9th index and we will have a mismatch between needle[j] and needle[i].
 
