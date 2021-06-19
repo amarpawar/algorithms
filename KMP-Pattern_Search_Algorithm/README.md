@@ -54,5 +54,23 @@ Lets take an exmaple and see how moving our pointer back to LPS[i] works.
 
 Needle: a 	b	a 	b	b	a 	b 	a 	b 	a 	a
 
-When our j pointer reaches to 4th index, our i index will reach to 9th index and we will have a mismatch between needle[j] and needle[i].
+When our i pointer reaches to 9th index, our j pointer will reach to 4th index and we will have a mismatch between needle[j] and needle[i].
+
+![alt text](https://i.ibb.co/Cm7vTNF/1.png)
+
+In the above image, π represents our LPS array. At i=8, we have LPS of length 4 which represents that needle.substring(0, 3) is equals to needle.substring(5, 8). Now we will check if there is any LPS present in substring from 0 to 3.
+
+From our LPS array we can see that we have LPS of length 2 for needle.substring(0, 3) (π[3] = 2 i.e. π[j-1] = 2) which represents needle.substring(0, 1) is equals to needle.substring(2, 3).
+
+</br>
+
+![alt text](https://i.ibb.co/mTZWhhv/2.png)
+
+As we already know that, needle.substring(0, 3) is equals to needle.substring(5, 8), the LPS for these two substrings is going to be same. Also we have already determined from LPS array that needle.substring(0, 1) is equals to needle.substring(2, 3), so we can safely conclude that needle.substring(0, 1) is going to be same as needle.substring(7, 8) which can be seen in the above image.
+
+</br>
+
+![alt text](https://i.ibb.co/n6VF4v2/3.png)
+
+Thus we don't have to move our j pointer back to 0 as we already know that needle.substring(0, 1) is equals to needle.substring(7, 8). We will move our j pointer to the index 2 which is equals to π[j-1] as shown in the above image and continue our algorithm.
 
