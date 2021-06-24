@@ -4,14 +4,14 @@ public class KMP
 {
     public static void main(String[] args)
     {
-        String haystack = "bbbaabbbbaaabbababbabbbabaaabbaabbababa";
-        String needle = "abbabbbabaa";
+        String text = "bbbaabbbbaaabbababbabbbabaaabbaabbababa";
+        String pattern = "abbabbbabaa";
 
-        int needleIndex = searchNeedleInHaystack(haystack, needle);
+        int patternIndex = searchKMP(text, pattern);
 
-        if (needleIndex >= 0)
+        if (patternIndex >= 0)
         {
-            System.out.println("Needle is present at index " + needleIndex + " in the haystack.");
+            System.out.println("Needle is present at index " + patternIndex + " in the haystack.");
         }
         else
         {
@@ -19,41 +19,46 @@ public class KMP
         }
     }
 
-    private static int searchNeedleInHaystack(String haystack, String needle)
+    private static int searchKMP(String text, String pattern)
     {
-        int[] lps = getLps(needle);
+        int[] lps = getLps(pattern);
         int j = 0;
+        int i = 0;
 
-        for (int i=0; i<haystack.length(); i++)
+        while (i < text.length())
         {
-            if (haystack.charAt(i) == needle.charAt(j))
+            if (text.charAt(i) == pattern.charAt(j))
             {
+                i++;
                 j++;
             }
             else if (j != 0)
             {
                 j = lps[j-1];
-                i--;
+            }
+            else
+            {
+                i++;
             }
 
-            if (j == needle.length())
+            if (j == pattern.length())
             {
-                return i-j+1;
+                return i-j;
             }
         }
 
         return -1;
     }
 
-    private static int[] getLps(String needle)
+    private static int[] getLps(String pattern)
     {
-        int[] lps = new int[needle.length()];
+        int[] lps = new int[pattern.length()];
         int j = 0;
         lps[j] = 0;
 
-        for (int i=1; i < needle.length(); i++)
+        for (int i=1; i < pattern.length(); i++)
         {
-            if (needle.charAt(j) == needle.charAt(i))
+            if (pattern.charAt(j) == pattern.charAt(i))
             {
                 j++;
                 lps[i] = j;
@@ -64,7 +69,7 @@ public class KMP
                 {
                     j = lps[j-1];
 
-                    if (needle.charAt(j) == needle.charAt(i))
+                    if (pattern.charAt(j) == pattern.charAt(i))
                     {
                         j++;
                         lps[i] = j;
