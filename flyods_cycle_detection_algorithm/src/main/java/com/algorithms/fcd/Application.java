@@ -38,11 +38,17 @@ public class Application
         SinglyLinkedList.Node<Integer> tortoise = linkedList.getHead();
         SinglyLinkedList.Node<Integer> hare = linkedList.getHead();
 
+        //Break the loop if you reach to hare reaches to the end of the list
         while (Objects.nonNull(hare) && Objects.nonNull(hare.getNext()))
         {
+            //move tortoise by one step
             tortoise = tortoise.getNext();
+
+            //move hare by two steps
             hare = hare.getNext().getNext();
 
+            //if tortoise is equals to the hare which means we have detected the loop
+            //return either tortoise or hare as both are same
             if (tortoise == hare)
             {
                 return tortoise;
@@ -56,9 +62,13 @@ public class Application
     {
         SinglyLinkedList.Node<Integer> head = linkedList.getHead();
 
+        //break the loop when head and matchedNode are same
         while (head != matchedNode)
         {
+            //move head by one step
             head = head.getNext();
+
+            //move matchedNode by one step
             matchedNode = matchedNode.getNext();
         }
 
